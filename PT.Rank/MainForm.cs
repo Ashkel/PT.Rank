@@ -22,6 +22,13 @@ namespace PT.Rank
 				return Path.Combine(txtServerPath.Text, @"DataServer\UserInfo\");
 			}
 		}
+		public string UserData
+		{
+			get
+			{
+				return Path.Combine(txtServerPath.Text, @"DataServer\UserData\");
+			}
+		}
 
 		public MainForm()
 		{
