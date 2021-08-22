@@ -32,16 +32,19 @@ namespace PT.Rank
 			try
 			{
 				using(var fs = File.OpenRead(_fileName))
+				using(var reader = new BinaryReader(fs))
 				{
-					byte[] buffer = new byte[32];
+					reader.BaseStream.Seek(0x10, SeekOrigin.Begin);
 
-					fs.Read(buffer, 0, 32);
+					Name = Byte2String(reader.ReadBytes(32));
 
-					Id = Byte2String(buffer);
+					reader.BaseStream.Seek(0xC8, SeekOrigin.Begin);
 
-					fs.Read(buffer, 0, 32);
+					Level = reader.ReadInt32();
 
-					Name = Byte2String(buffer);
+					reader.BaseStream.Seek(0x2C0, SeekOrigin.Begin);
+
+					Id = Byte2String(reader.ReadBytes(32));
 
 
 				}
