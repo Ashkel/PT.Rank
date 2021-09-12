@@ -62,6 +62,14 @@ namespace PT.Rank
 			this.nudRankTimer = new System.Windows.Forms.NumericUpDown();
 			this.label8 = new System.Windows.Forms.Label();
 			this.tmRank = new System.Windows.Forms.Timer(this.components);
+			this.bgWorkerRank = new System.ComponentModel.BackgroundWorker();
+			this.tpDrop = new System.Windows.Forms.TabPage();
+			this.lbDropMonsters = new System.Windows.Forms.ListBox();
+			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.nudDropNumber = new System.Windows.Forms.NumericUpDown();
+			this.label9 = new System.Windows.Forms.Label();
+			this.dgvDrops = new System.Windows.Forms.DataGridView();
+			this.btnDropSave = new System.Windows.Forms.Button();
 			this.tabControl1.SuspendLayout();
 			this.tpSettings.SuspendLayout();
 			this.groupBox1.SuspendLayout();
@@ -70,6 +78,10 @@ namespace PT.Rank
 			((System.ComponentModel.ISupportInitialize)(this.dgvRank)).BeginInit();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudRankTimer)).BeginInit();
+			this.tpDrop.SuspendLayout();
+			this.groupBox3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nudDropNumber)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dgvDrops)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// menuStrip1
@@ -100,6 +112,7 @@ namespace PT.Rank
 			// 
 			this.tabControl1.Controls.Add(this.tpSettings);
 			this.tabControl1.Controls.Add(this.tpRankings);
+			this.tabControl1.Controls.Add(this.tpDrop);
 			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControl1.Location = new System.Drawing.Point(0, 49);
 			this.tabControl1.Name = "tabControl1";
@@ -253,7 +266,7 @@ namespace PT.Rank
 			this.txtSqlDB.Name = "txtSqlDB";
 			this.txtSqlDB.Size = new System.Drawing.Size(128, 20);
 			this.txtSqlDB.TabIndex = 7;
-			this.txtSqlDB.Text = "PoisonPK";
+			this.txtSqlDB.Text = "PristonDB";
 			// 
 			// label3
 			// 
@@ -270,6 +283,7 @@ namespace PT.Rank
 			this.txtSqlPwd.Name = "txtSqlPwd";
 			this.txtSqlPwd.Size = new System.Drawing.Size(128, 20);
 			this.txtSqlPwd.TabIndex = 5;
+			this.txtSqlPwd.Text = "@tro!an*C6pkDx0!";
 			this.txtSqlPwd.UseSystemPasswordChar = true;
 			// 
 			// label2
@@ -374,6 +388,7 @@ namespace PT.Rank
             0,
             0,
             0});
+			this.nudRankTimer.ValueChanged += new System.EventHandler(this.nudRankTimer_ValueChanged);
 			// 
 			// label8
 			// 
@@ -386,7 +401,86 @@ namespace PT.Rank
 			// 
 			// tmRank
 			// 
+			this.tmRank.Interval = 1000;
 			this.tmRank.Tick += new System.EventHandler(this.tmRank_Tick);
+			// 
+			// bgWorkerRank
+			// 
+			this.bgWorkerRank.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorkerRank_DoWork);
+			// 
+			// tpDrop
+			// 
+			this.tpDrop.Controls.Add(this.dgvDrops);
+			this.tpDrop.Controls.Add(this.lbDropMonsters);
+			this.tpDrop.Controls.Add(this.groupBox3);
+			this.tpDrop.Location = new System.Drawing.Point(4, 22);
+			this.tpDrop.Name = "tpDrop";
+			this.tpDrop.Padding = new System.Windows.Forms.Padding(3);
+			this.tpDrop.Size = new System.Drawing.Size(792, 353);
+			this.tpDrop.TabIndex = 2;
+			this.tpDrop.Text = "Drop";
+			this.tpDrop.UseVisualStyleBackColor = true;
+			this.tpDrop.Enter += new System.EventHandler(this.tpDrop_Enter);
+			// 
+			// lbDropMonsters
+			// 
+			this.lbDropMonsters.FormattingEnabled = true;
+			this.lbDropMonsters.Location = new System.Drawing.Point(8, 72);
+			this.lbDropMonsters.Name = "lbDropMonsters";
+			this.lbDropMonsters.Size = new System.Drawing.Size(224, 264);
+			this.lbDropMonsters.TabIndex = 10;
+			this.lbDropMonsters.SelectedIndexChanged += new System.EventHandler(this.lbDropMonsters_SelectedIndexChanged);
+			// 
+			// groupBox3
+			// 
+			this.groupBox3.Controls.Add(this.btnDropSave);
+			this.groupBox3.Controls.Add(this.nudDropNumber);
+			this.groupBox3.Controls.Add(this.label9);
+			this.groupBox3.Location = new System.Drawing.Point(8, 12);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.Size = new System.Drawing.Size(224, 51);
+			this.groupBox3.TabIndex = 9;
+			this.groupBox3.TabStop = false;
+			this.groupBox3.Text = "Opções";
+			// 
+			// nudDropNumber
+			// 
+			this.nudDropNumber.Location = new System.Drawing.Point(80, 21);
+			this.nudDropNumber.Name = "nudDropNumber";
+			this.nudDropNumber.Size = new System.Drawing.Size(64, 20);
+			this.nudDropNumber.TabIndex = 7;
+			this.nudDropNumber.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Location = new System.Drawing.Point(8, 24);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(48, 13);
+			this.label9.TabIndex = 6;
+			this.label9.Text = "# Drops:";
+			// 
+			// dgvDrops
+			// 
+			this.dgvDrops.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvDrops.Location = new System.Drawing.Point(240, 18);
+			this.dgvDrops.Name = "dgvDrops";
+			this.dgvDrops.Size = new System.Drawing.Size(544, 318);
+			this.dgvDrops.TabIndex = 12;
+			// 
+			// btnDropSave
+			// 
+			this.btnDropSave.Location = new System.Drawing.Point(150, 19);
+			this.btnDropSave.Name = "btnDropSave";
+			this.btnDropSave.Size = new System.Drawing.Size(64, 23);
+			this.btnDropSave.TabIndex = 8;
+			this.btnDropSave.Text = "Salvar";
+			this.btnDropSave.UseVisualStyleBackColor = true;
+			this.btnDropSave.Click += new System.EventHandler(this.btnDropSave_Click);
 			// 
 			// MainForm
 			// 
@@ -411,6 +505,11 @@ namespace PT.Rank
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudRankTimer)).EndInit();
+			this.tpDrop.ResumeLayout(false);
+			this.groupBox3.ResumeLayout(false);
+			this.groupBox3.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nudDropNumber)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dgvDrops)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -450,6 +549,14 @@ namespace PT.Rank
 		private System.Windows.Forms.ListBox lbRankLog;
 		private System.Windows.Forms.Button btnRankGo;
 		private System.Windows.Forms.Timer tmRank;
+		private System.ComponentModel.BackgroundWorker bgWorkerRank;
+		private System.Windows.Forms.TabPage tpDrop;
+		private System.Windows.Forms.DataGridView dgvDrops;
+		private System.Windows.Forms.ListBox lbDropMonsters;
+		private System.Windows.Forms.GroupBox groupBox3;
+		private System.Windows.Forms.Button btnDropSave;
+		private System.Windows.Forms.NumericUpDown nudDropNumber;
+		private System.Windows.Forms.Label label9;
 	}
 }
 
