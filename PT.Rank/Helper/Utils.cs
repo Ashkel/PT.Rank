@@ -144,7 +144,9 @@ namespace PT.Rank.Helper
 
 		public static string ParseString(string buffer, ref int position)
 		{
-			if(GetWord(buffer, ref position)[0] == 34)
+			int tmp = position;
+
+			if(GetWord(buffer, ref tmp)[0] == 34)
 			{
 				return GetString(buffer, ref position);
 			}
