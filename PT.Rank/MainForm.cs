@@ -340,6 +340,10 @@ namespace PT.Rank
 			}
 		}
 
+
+// Tests, drop editor
+
+
 		private void tpDrop_Enter(object sender, EventArgs e)
 		{
 			ListMonsterFiles(lbDropMonsters);
